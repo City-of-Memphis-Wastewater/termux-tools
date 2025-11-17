@@ -1,4 +1,5 @@
-#/bash
+#!/data/data/com.termux/files/usr/bin/bash
+#
 # Run this file using 'source build_killsession'
 
 mkdir -p ~/.config/termux/functions
