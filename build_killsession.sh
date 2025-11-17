@@ -51,7 +51,12 @@ killsession() {
 }
 EOF
 
-# 2. Refwrwnce the file that holds the function from .bashrc
-echo '[[ -f ~/.config/termux/functions/killsession.sh ]] && . ~/.config/termux/functions/killsession.sh' >> ~/.bashrc
+# Source from .bashrc (idempotent)
+grep -q 'killsession.sh' ~/.bashrc || \
+    echo '[[ -f ~/.config/termux/functions/killsession.sh ]] && . ~/.config/termux/functions/killsession.sh' >> ~/.bashrc
 
-source ~/.bashrc
+# Reload so it's available immediately
+source ~/.bashrc 2>/dev/null || true
+
+echo "killsession installed! Use: killsession 2 -y"
+EOF
